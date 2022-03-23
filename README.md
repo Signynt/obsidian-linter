@@ -55,6 +55,7 @@ Documentation for all rules can be found in the [rules docs](https://github.com/
 ### Content rules
 
 - [change-internal-heading-links-to-regular-links](https://github.com/platers/obsidian-linter/blob/master/docs/rules.md#change-internal-heading-links-to-regular-links)
+- [change-regular-heading-links-to-have-aliases](https://github.com/platers/obsidian-linter/blob/master/docs/rules.md#change-regular-heading-links-to-have-aliases)
 - [change-pipes-to-have-escape.](https://github.com/platers/obsidian-linter/blob/master/docs/rules.md#change-pipes-to-have-escape.)
 - [remove-multiple-spaces](https://github.com/platers/obsidian-linter/blob/master/docs/rules.md#remove-multiple-spaces)
 - [remove-hyphenated-line-breaks](https://github.com/platers/obsidian-linter/blob/master/docs/rules.md#remove-hyphenated-line-breaks)

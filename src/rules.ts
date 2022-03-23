@@ -463,7 +463,7 @@ export const rules: Rule[] = [
       (text: string, options = {}) => {
         return ignoreCodeBlocksAndYAML(text, (text) => {
           /* eslint-disable no-useless-escape */
-          return text.replace(/(\[\[)(#)([^\s|]+)(\]\])/g, `$1${options['metadata: file name']}$2$3\\|$3$4`);
+          return text.replace(/(\[\[)(#)([^\n|]+)(\]\])/g, `$1${options['metadata: file name']}$2$3\\|$3$4`);
           /* eslint-disable no-useless-escape */
         });
       },
@@ -479,6 +479,29 @@ export const rules: Rule[] = [
             {
               'metadata: file name': 'Filename',
             },
+        ),
+      ],
+  ),
+  new Rule(
+      'Change Regular Heading Links to Have Aliases',
+      'Change Regular Heading Links to Have Aliases',
+      RuleType.CONTENT,
+      (text: string) => {
+        return ignoreCodeBlocksAndYAML(text, (text) => {
+          /* eslint-disable no-useless-escape */
+          return text.replace(/(\[\[.*)(#)([^\n|]+)(\]\])/g, `$1$2$3\\|$3$4`);
+          /* eslint-disable no-useless-escape */
+        });
+      },
+      [
+        new Example(
+            'Transforming an internal Heading Link to a regular link, with an alias.',
+            dedent`
+            Example can't be processed, works in Obsidian.
+      `,
+            dedent`
+            Example can't be processed, works in Obsidian.
+      `,
         ),
       ],
   ),

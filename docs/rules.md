@@ -562,6 +562,28 @@ After:
 Example can't be processed, works in Obsidian.
 ```
 
+### Change Regular Heading Links to Have Aliases
+
+Alias: `change-regular-heading-links-to-have-aliases`
+
+Change Regular Heading Links to Have Aliases
+
+
+
+Example: Transforming an internal Heading Link to a regular link, with an alias.
+
+Before:
+
+```markdown
+Example can't be processed, works in Obsidian.
+```
+
+After:
+
+```markdown
+Example can't be processed, works in Obsidian.
+```
+
 ### Change Pipes to have Escape.
 
 Alias: `change-pipes-to-have-escape.`
