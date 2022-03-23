@@ -628,12 +628,15 @@ export const rules: Rule[] = [
       'Moves all Tags found in the note to YAML',
       RuleType.YAML,
       (text: string, options = {}) => {
-        text = initYAML(text);
         const contentTagsArray = options['metadata: content tags'];
+        if (!contentTagsArray) {
+          return text;
+        }
+        text = initYAML(text);
         const contentTags: string[] = [];
         if (contentTagsArray) {
           for (const entry of contentTagsArray) {
-            contentTags.push(entry.tag);
+            contentTags.push(entry?.tag);
           }
         }
         const withHashtagsTags = contentTags.join(', ');
@@ -664,18 +667,15 @@ export const rules: Rule[] = [
       },
       [
         new Example(
-            'Adds a header with the title from heading.',
+            'Moves tags from content to YAML.',
             dedent`
-        # Title
+            Example can't be processed, works in Obsidian.
         `,
             dedent`
-        ---
-        tags: [, , , , ]
-        ---
-        # Title
+            Example can't be processed, works in Obsidian.
         `,
             {
-              'metadata: content tags': '#tag1',
+              'metadata: content tags': '',
             },
         ),
       ],

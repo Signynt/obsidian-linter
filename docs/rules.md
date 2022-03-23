@@ -13,21 +13,18 @@ Moves all Tags found in the note to YAML
 
 
 
-Example: Adds a header with the title from heading.
+Example: Moves tags from content to YAML.
 
 Before:
 
 ```markdown
-# Title
+Example can't be processed, works in Obsidian.
 ```
 
 After:
 
 ```markdown
----
-tags: [, , , , ]
----
-# Title
+Example can't be processed, works in Obsidian.
 ```
 
 ### Format Tags in YAML
