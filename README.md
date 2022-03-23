@@ -13,6 +13,8 @@ To lint the all files, run `Lint all files in the vault`.
 
 When `Lint on save` is toggled on, the plugin will lint the current file on manual save (when you press `Ctrl+S`).
 
+![Demo](images/demo.gif)
+
 ### Disable rules
 
 ```markdown
@@ -32,6 +34,7 @@ Documentation for all rules can be found in the [rules docs](https://github.com/
 
 ### YAML rules
 
+- [move-tags-to-yaml](https://github.com/platers/obsidian-linter/blob/master/docs/rules.md#move-tags-to-yaml)
 - [format-tags-in-yaml](https://github.com/platers/obsidian-linter/blob/master/docs/rules.md#format-tags-in-yaml)
 - [insert-yaml-attributes](https://github.com/platers/obsidian-linter/blob/master/docs/rules.md#insert-yaml-attributes)
 - [yaml-timestamp](https://github.com/platers/obsidian-linter/blob/master/docs/rules.md#yaml-timestamp)
@@ -51,11 +54,14 @@ Documentation for all rules can be found in the [rules docs](https://github.com/
 
 ### Content rules
 
+- [change-internal-heading-links-to-regular-links](https://github.com/platers/obsidian-linter/blob/master/docs/rules.md#change-internal-heading-links-to-regular-links)
+- [change-pipes-to-have-escape.](https://github.com/platers/obsidian-linter/blob/master/docs/rules.md#change-pipes-to-have-escape.)
 - [remove-multiple-spaces](https://github.com/platers/obsidian-linter/blob/master/docs/rules.md#remove-multiple-spaces)
 - [remove-hyphenated-line-breaks](https://github.com/platers/obsidian-linter/blob/master/docs/rules.md#remove-hyphenated-line-breaks)
 - [remove-consecutive-list-markers](https://github.com/platers/obsidian-linter/blob/master/docs/rules.md#remove-consecutive-list-markers)
 - [remove-empty-list-markers](https://github.com/platers/obsidian-linter/blob/master/docs/rules.md#remove-empty-list-markers)
 - [proper-ellipsis](https://github.com/platers/obsidian-linter/blob/master/docs/rules.md#proper-ellipsis)
+- [remove-tags-in-content](https://github.com/platers/obsidian-linter/blob/master/docs/rules.md#remove-tags-in-content)
 
 ### Spacing rules
 

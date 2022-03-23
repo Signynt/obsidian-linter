@@ -171,7 +171,7 @@ export const rules: Rule[] = [
         new Example(
             'Removes trailing spaces and tabs.',
             dedent`
-        # H1   
+        # H1
         Line with trailing spaces and tabs.	        `, // eslint-disable-line no-tabs
             dedent`
         # H1
@@ -445,7 +445,7 @@ export const rules: Rule[] = [
           Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
 
-          
+
       `,
             dedent`
           Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -456,7 +456,55 @@ export const rules: Rule[] = [
   ),
 
   // Content rules
-
+  new Rule(
+      'Change internal Heading Links to Regular Links',
+      'Change internal Heading Links to Regular Links',
+      RuleType.CONTENT,
+      (text: string, options = {}) => {
+        return ignoreCodeBlocksAndYAML(text, (text) => {
+          /* eslint-disable no-useless-escape */
+          return text.replace(/(\[\[)(#)([^\s|]+)(\]\])/g, `$1${options['metadata: file name']}$2$3\\|$3$4`);
+          /* eslint-disable no-useless-escape */
+        });
+      },
+      [
+        new Example(
+            'Transforming an internal Heading Link to a regular link, with an alias.',
+            dedent`
+            Example can't be processed, works in Obsidian.
+      `,
+            dedent`
+            Example can't be processed, works in Obsidian.
+      `,
+            {
+              'metadata: file name': 'Filename',
+            },
+        ),
+      ],
+  ),
+  new Rule(
+      'Change Pipes to have Escape.',
+      'Change Pipes to have Escape.',
+      RuleType.CONTENT,
+      (text: string) => {
+        return ignoreCodeBlocksAndYAML(text, (text) => {
+          /* eslint-disable no-useless-escape */
+          return text.replace(/(?<!\\)\|(?=[^\[\[]*\]\])/gm, '\\\|');
+          /* eslint-disable no-useless-escape */
+        });
+      },
+      [
+        new Example(
+            'Changing Pipes to be Escaped',
+            dedent`
+            Example can't be processed, works in Obsidian.
+      `,
+            dedent`
+            Example can't be processed, works in Obsidian.
+      `,
+        ),
+      ],
+  ),
   new Rule(
       'Remove Multiple Spaces',
       'Removes two or more consecutive spaces. Ignores spaces at the beginning and ending of the line. ',
@@ -575,7 +623,109 @@ export const rules: Rule[] = [
   ),
 
   // YAML rules
+  new Rule(
+      'Move Tags to YAML',
+      'Moves all Tags found in the note to YAML',
+      RuleType.YAML,
+      (text: string, options = {}) => {
+        text = initYAML(text);
+        const contentTagsArray = options['metadata: content tags'];
+        const contentTags: string[] = [];
+        if (contentTagsArray) {
+          for (const entry of contentTagsArray) {
+            contentTags.push(entry.tag);
+          }
+        }
+        const withHashtagsTags = contentTags.join(', ');
+        const sendToYAMLTags = withHashtagsTags.replace(/#/g, '');
+        if (sendToYAMLTags) {
+          return formatYAML(text, (text) => {
+            const tags_match_str = `\ntags.*\n`;
+            const tags_match = new RegExp(tags_match_str);
+            if (tags_match.test(text)) {
+              const tags_end = text.indexOf('tags: [');
+              /* eslint-disable no-empty-character-class */
+              const tags_empty_match = /tags: []/gm;
+              /* eslint-disable no-empty-character-class */
+              const tags_empty_match_str = tags_empty_match.exec(text);
+              if (tags_empty_match_str) {
+                text = insert(text, tags_end+7, escapeDollarSigns(`${sendToYAMLTags}`));
+              } else {
+                text = insert(text, tags_end+7, escapeDollarSigns(`${sendToYAMLTags}, `));
+              }
+            } else {
+              const yaml_end = text.indexOf('\n---');
+              text = insert(text, yaml_end, `\ntags: [${sendToYAMLTags}]`);
+            }
+            return text;
+          },
+          );
+        }
+      },
+      [
+        new Example(
+            'Adds a header with the title from heading.',
+            dedent`
+        # Title
+        `,
+            dedent`
+        ---
+        tags: [, , , , ]
+        ---
+        # Title
+        `,
+            {
+              'metadata: content tags': '#tag1',
+            },
+        ),
+      ],
+  ),
+  new Rule(
+      'Remove Tags in Content',
+      'Removes all Tags found in the note, that are not in YAML',
+      RuleType.CONTENT,
+      (text: string, options = {}) => {
+        return ignoreCodeBlocksAndYAML(text, (text) => {
+          const content_Tag_Remove_Array = options['metadata: content tags'];
+          if (content_Tag_Remove_Array) {
+            for (const content_Tag_Remove_Entry of content_Tag_Remove_Array) {
+              text = text.replace(content_Tag_Remove_Entry.tag, '');
+            }
+          }
+          return text;
+        });
+      },
+      [
+        new Example(
+            'Remove tags from content',
+            dedent`
+            ---
+            animal: cat
+            tags: [tag1]
+            ---
 
+            #tag1
+
+            ## Heading 2
+            Some text in the note.
+            `,
+            dedent`
+            ---
+            animal: cat
+            tags: [tag1]
+            ---
+
+            #tag1
+
+            ## Heading 2
+            Some text in the note.
+            `,
+            {
+              'metadata: content tags': '#tag1',
+            },
+        ),
+      ],
+  ),
   new Rule(
       'Format Tags in YAML',
       'Remove Hashtags from tags in the YAML frontmatter, as they make the tags there invalid.',

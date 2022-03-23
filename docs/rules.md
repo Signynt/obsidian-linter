@@ -5,6 +5,31 @@
 
 
 ## YAML
+### Move Tags to YAML
+
+Alias: `move-tags-to-yaml`
+
+Moves all Tags found in the note to YAML
+
+
+
+Example: Adds a header with the title from heading.
+
+Before:
+
+```markdown
+# Title
+```
+
+After:
+
+```markdown
+---
+tags: [, , , , ]
+---
+# Title
+```
+
 ### Format Tags in YAML
 
 Alias: `format-tags-in-yaml`
@@ -518,6 +543,50 @@ Lorem.[^1] Ipsum,[^2] doletes.
 ```
 
 ## Content
+### Change internal Heading Links to Regular Links
+
+Alias: `change-internal-heading-links-to-regular-links`
+
+Change internal Heading Links to Regular Links
+
+
+
+Example: Transforming an internal Heading Link to a regular link, with an alias.
+
+Before:
+
+```markdown
+Example can't be processed, works in Obsidian.
+```
+
+After:
+
+```markdown
+Example can't be processed, works in Obsidian.
+```
+
+### Change Pipes to have Escape.
+
+Alias: `change-pipes-to-have-escape.`
+
+Change Pipes to have Escape.
+
+
+
+Example: Changing Pipes to be Escaped
+
+Before:
+
+```markdown
+Example can't be processed, works in Obsidian.
+```
+
+After:
+
+```markdown
+Example can't be processed, works in Obsidian.
+```
+
 ### Remove Multiple Spaces
 
 Alias: `remove-multiple-spaces`
@@ -639,6 +708,44 @@ After:
 Lorem (…) Impsum.
 ```
 
+### Remove Tags in Content
+
+Alias: `remove-tags-in-content`
+
+Removes all Tags found in the note, that are not in YAML
+
+
+
+Example: Remove tags from content
+
+Before:
+
+```markdown
+---
+animal: cat
+tags: [tag1]
+---
+
+#tag1
+
+## Heading 2
+Some text in the note.
+```
+
+After:
+
+```markdown
+---
+animal: cat
+tags: [tag1]
+---
+
+#tag1
+
+## Heading 2
+Some text in the note.
+```
+
 ## Spacing
 ### Trailing spaces
 
@@ -655,7 +762,7 @@ Example: Removes trailing spaces and tabs.
 Before:
 
 ```markdown
-# H1   
+# H1
 Line with trailing spaces and tabs.	        
 ```
 

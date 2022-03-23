@@ -138,6 +138,7 @@ export default class LinterPlugin extends Plugin {
             'metadata: file created time': moment(file.stat.ctime).format(),
             'metadata: file modified time': moment(file.stat.mtime).format(),
             'metadata: file name': file.basename,
+            'metadata: content tags': this.app.metadataCache.getFileCache(file)?.tags,
           }, rule.getOptions(this.settings));
 
         if (options[rule.enabledOptionName()]) {
