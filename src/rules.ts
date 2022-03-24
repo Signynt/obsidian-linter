@@ -489,7 +489,7 @@ export const rules: Rule[] = [
       (text: string) => {
         return ignoreCodeBlocksAndYAML(text, (text) => {
           /* eslint-disable no-useless-escape */
-          return text.replace(/(\[\[.*)(#)([^\n|]+)(\]\])/g, `$1$2$3\\|$3$4`);
+          return text.replace(/(\[\[.*)(#)([^\n\[|]+)(\]\])/gm, `$1$2$3\\|$3$4`);
           /* eslint-disable no-useless-escape */
         });
       },
