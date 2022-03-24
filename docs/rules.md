@@ -5,6 +5,58 @@
 
 
 ## YAML
+### Remove anatomie-review tag from YAML
+
+Alias: `remove-anatomie-review-tag-from-yaml`
+
+Remove anatomie-review tag from YAML
+
+
+
+Example: Moves tags from content to YAML.
+
+Before:
+
+```markdown
+---
+tags: [review-anatomie]
+---
+```
+
+After:
+
+```markdown
+---
+tags: []
+---
+```
+
+### Remove in-progress/anatomie tag from YAML
+
+Alias: `remove-in-progress/anatomie-tag-from-yaml`
+
+Remove in-progress/anatomie tag from YAML
+
+
+
+Example: Moves tags from content to YAML.
+
+Before:
+
+```markdown
+---
+tags: [in-progress/anatomie]
+---
+```
+
+After:
+
+```markdown
+---
+tags: []
+---
+```
+
 ### Move Tags to YAML
 
 Alias: `move-tags-to-yaml`

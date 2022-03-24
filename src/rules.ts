@@ -647,6 +647,56 @@ export const rules: Rule[] = [
 
   // YAML rules
   new Rule(
+      'Remove anatomie-review tag from YAML',
+      'Remove anatomie-review tag from YAML',
+      RuleType.YAML,
+      (text: string) => {
+        return formatYAML(text, (text) => {
+          return text.replace(/review-anatomie/gm, '');
+        });
+      },
+      [
+        new Example(
+            'Moves tags from content to YAML.',
+            dedent`
+            ---
+            tags: [review-anatomie]
+            ---
+        `,
+            dedent`
+            ---
+            tags: []
+            ---
+        `,
+        ),
+      ],
+  ),
+  new Rule(
+      'Remove in-progress/anatomie tag from YAML',
+      'Remove in-progress/anatomie tag from YAML',
+      RuleType.YAML,
+      (text: string) => {
+        return formatYAML(text, (text) => {
+          return text.replace(/in-progress\/anatomie/gm, '');
+        });
+      },
+      [
+        new Example(
+            'Moves tags from content to YAML.',
+            dedent`
+            ---
+            tags: [in-progress/anatomie]
+            ---
+        `,
+            dedent`
+            ---
+            tags: []
+            ---
+        `,
+        ),
+      ],
+  ),
+  new Rule(
       'Move Tags to YAML',
       'Moves all Tags found in the note to YAML',
       RuleType.YAML,

@@ -34,6 +34,8 @@ Documentation for all rules can be found in the [rules docs](https://github.com/
 
 ### YAML rules
 
+- [remove-anatomie-review-tag-from-yaml](https://github.com/platers/obsidian-linter/blob/master/docs/rules.md#remove-anatomie-review-tag-from-yaml)
+- [remove-in-progress/anatomie-tag-from-yaml](https://github.com/platers/obsidian-linter/blob/master/docs/rules.md#remove-in-progress/anatomie-tag-from-yaml)
 - [move-tags-to-yaml](https://github.com/platers/obsidian-linter/blob/master/docs/rules.md#move-tags-to-yaml)
 - [format-tags-in-yaml](https://github.com/platers/obsidian-linter/blob/master/docs/rules.md#format-tags-in-yaml)
 - [insert-yaml-attributes](https://github.com/platers/obsidian-linter/blob/master/docs/rules.md#insert-yaml-attributes)
