@@ -34,7 +34,6 @@ Documentation for all rules can be found in the [rules docs](https://github.com/
 
 ### YAML rules
 
-- [move-yaml-that-calendar-doesnt-like-to-content](https://github.com/platers/obsidian-linter/blob/master/docs/rules.md#move-yaml-that-calendar-doesnt-like-to-content)
 - [remove-anatomie-review-tag-from-yaml](https://github.com/platers/obsidian-linter/blob/master/docs/rules.md#remove-anatomie-review-tag-from-yaml)
 - [remove-in-progress/anatomie-tag-from-yaml](https://github.com/platers/obsidian-linter/blob/master/docs/rules.md#remove-in-progress/anatomie-tag-from-yaml)
 - [move-tags-to-yaml](https://github.com/platers/obsidian-linter/blob/master/docs/rules.md#move-tags-to-yaml)
@@ -66,6 +65,7 @@ Documentation for all rules can be found in the [rules docs](https://github.com/
 - [remove-consecutive-list-markers](https://github.com/platers/obsidian-linter/blob/master/docs/rules.md#remove-consecutive-list-markers)
 - [remove-empty-list-markers](https://github.com/platers/obsidian-linter/blob/master/docs/rules.md#remove-empty-list-markers)
 - [proper-ellipsis](https://github.com/platers/obsidian-linter/blob/master/docs/rules.md#proper-ellipsis)
+- [move-yaml-that-calendar-doesnt-like-to-content](https://github.com/platers/obsidian-linter/blob/master/docs/rules.md#move-yaml-that-calendar-doesnt-like-to-content)
 - [remove-tags-in-content](https://github.com/platers/obsidian-linter/blob/master/docs/rules.md#remove-tags-in-content)
 
 ### Spacing rules

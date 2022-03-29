@@ -456,33 +456,6 @@ export const rules: Rule[] = [
   ),
 
   // Content rules
-  // new Rule(
-  //     'Remove Content',
-  //     'Remove Content',
-  //     RuleType.CONTENT,
-  //     (text: string, options = {}) => {
-  //       return ignoreCodeBlocksAndYAML(text, (text) => {
-  //         return text.replace(/.*/g, '');
-  //       });
-  //     },
-  //     [
-  //       new Example(
-  //           'Remove Content.',
-  //           dedent`
-  //           ---
-  //           frontmatter
-  //           ---
-  //           Example Text.
-  //     `,
-  //           dedent`
-  //           ---
-  //           frontmatter
-  //           ---
-  //
-  //     `,
-  //       ),
-  //     ],
-  // ),
   new Rule(
       'Change internal Heading Links to Regular Links',
       'Change internal Heading Links to Regular Links',
@@ -676,16 +649,16 @@ export const rules: Rule[] = [
   new Rule(
       'Move YAML that calendar doesnt like to content',
       'Move YAML that calendar doesnt like to content',
-      RuleType.YAML,
+      RuleType.CONTENT,
       (text: string) => {
-        return formatYAML(text, (text) => {
-          text = text.replace(/\["/gm, '');
-          text = text.replace(/"]/gm, '');
-          text = text.replace(/(type):\s(.*)\n(location):\s(.*)\n(professor):\s(.*)\n(topic):\s(.*)\n---[\s\S]*/gm, '---\n> [!info]\n> - **$1**:: $2\n> - **$3**:: [[$4]]\n> - **$5**:: [[$6]]\n> - **$7**:: $8\n');
-          text = text.replace(/\[\[null\]\]/gm, '');
-          text = text.replace(/null/gm, '');
-          return text;
-        });
+        // return formatYAML(text, (text) => {
+        text = text.replace(/\["/gm, '');
+        text = text.replace(/"]/gm, '');
+        text = text.replace(/(type):\s(.*)\n(location):\s(.*)\n(professor):\s(.*)\n(topic):\s(.*)\n---[\s\S]*/gm, '---\n\n> [!info]\n> - *$1*:: $2\n> - *$3*:: [[$4]]\n> - *$5*:: [[$6]]\n> - *$7*:: $8\n');
+        text = text.replace(/\[\[null\]\]/gm, '');
+        text = text.replace(/null/gm, '');
+        return text;
+        // });
       },
       [
         new Example(
@@ -705,45 +678,17 @@ export const rules: Rule[] = [
             ---
             date: 2022-04-04
             ---
-            > [!info]
-            > - **type**:: Vorlesung
-            > - **location**:: [[Anatomie|Hösaal I (Anatomie)]]
-            > - **professor**:: [[Name]]
-            > - **topic**:: Testing
 
-            textbooks
-            test
+            > [!info]
+            > - *type*:: Vorlesung
+            > - *location*:: [[Anatomie|Hösaal I (Anatomie)]]
+            > - *professor*:: [[Name]]
+            > - *topic*:: Testing
+
         `,
         ),
       ],
   ),
-  // new Rule(
-  //     'Remove brackets and quotes from YAML',
-  //     'Remove brackets and quotes from YAML',
-  //     RuleType.YAML,
-  //     (text: string) => {
-  //       return formatYAML(text, (text) => {
-  //         text = text.replace(/\["/gm, '');
-  //         text = text.replace(/"]/gm, '');
-  //         return text;
-  //       });
-  //     },
-  //     [
-  //       new Example(
-  //           'Removes brackets and quotes from YAML.',
-  //           dedent`
-  //           ---
-  //           date: ["2022-04-04"]
-  //           ---
-  //       `,
-  //           dedent`
-  //           ---
-  //           date: 2022-04-04
-  //           ---
-  //       `,
-  //       ),
-  //     ],
-  // ),
   new Rule(
       'Remove anatomie-review tag from YAML',
       'Remove anatomie-review tag from YAML',
