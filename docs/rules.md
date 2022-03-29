@@ -5,6 +5,46 @@
 
 
 ## YAML
+### Move YAML that calendar doesnt like to content
+
+Alias: `move-yaml-that-calendar-doesnt-like-to-content`
+
+Move YAML that calendar doesnt like to content
+
+
+
+Example: Moves YAML that calendar doesnt like to content.
+
+Before:
+
+```markdown
+---
+date: ["2022-04-04"]
+type: Vorlesung
+location: Anatomie|Hösaal I (Anatomie)
+professor: null
+topic: null
+---
+textbooks
+test
+```
+
+After:
+
+```markdown
+---
+date: 2022-04-04
+---
+> [!info]
+> - **type**:: Vorlesung
+> - **location**:: [[Anatomie|Hösaal I (Anatomie)]]
+> - **professor**::
+> - **topic**::
+
+textbooks
+test
+```
+
 ### Remove anatomie-review tag from YAML
 
 Alias: `remove-anatomie-review-tag-from-yaml`
@@ -301,6 +341,36 @@ After:
 title: Filename
 ---
 
+```
+
+### Remove YAML that calendar doesnt like
+
+Alias: `remove-yaml-that-calendar-doesnt-like`
+
+Remove YAML that calendar doesnt like
+
+
+
+Example: Removes brackets and quotes from YAML.
+
+Before:
+
+```markdown
+---
+date: 2022-04-04
+type: Vorlesung
+location: Anatomie|Hösaal I (Anatomie)
+professor: null
+topic: null
+---
+```
+
+After:
+
+```markdown
+---
+date: 2022-04-04
+---
 ```
 
 ## Heading

@@ -456,6 +456,33 @@ export const rules: Rule[] = [
   ),
 
   // Content rules
+  // new Rule(
+  //     'Remove Content',
+  //     'Remove Content',
+  //     RuleType.CONTENT,
+  //     (text: string, options = {}) => {
+  //       return ignoreCodeBlocksAndYAML(text, (text) => {
+  //         return text.replace(/.*/g, '');
+  //       });
+  //     },
+  //     [
+  //       new Example(
+  //           'Remove Content.',
+  //           dedent`
+  //           ---
+  //           frontmatter
+  //           ---
+  //           Example Text.
+  //     `,
+  //           dedent`
+  //           ---
+  //           frontmatter
+  //           ---
+  //
+  //     `,
+  //       ),
+  //     ],
+  // ),
   new Rule(
       'Change internal Heading Links to Regular Links',
       'Change internal Heading Links to Regular Links',
@@ -646,6 +673,76 @@ export const rules: Rule[] = [
   ),
 
   // YAML rules
+  new Rule(
+      'Move YAML that calendar doesnt like to content',
+      'Move YAML that calendar doesnt like to content',
+      RuleType.YAML,
+      (text: string) => {
+        return formatYAML(text, (text) => {
+          text = text.replace(/\["/gm, '');
+          text = text.replace(/"]/gm, '');
+          text = text.replace(/(type):\s(.*)\n(location):\s(.*)\n(professor):\s(.*)\n(topic):\s(.*)\n---[\s\S]*/gm, '---\n> [!info]\n> - **$1**:: $2\n> - **$3**:: [[$4]]\n> - **$5**:: [[$6]]\n> - **$7**:: $8\n');
+          text = text.replace(/\[\[null\]\]/gm, '');
+          return text;
+        });
+      },
+      [
+        new Example(
+            'Moves YAML that calendar doesnt like to content.',
+            dedent`
+            ---
+            date: ["2022-04-04"]
+            type: Vorlesung
+            location: Anatomie|Hösaal I (Anatomie)
+            professor: null
+            topic: null
+            ---
+            textbooks
+            test
+        `,
+            dedent`
+            ---
+            date: 2022-04-04
+            ---
+            > [!info]
+            > - **type**:: Vorlesung
+            > - **location**:: [[Anatomie|Hösaal I (Anatomie)]]
+            > - **professor**::
+            > - **topic**::
+
+            textbooks
+            test
+        `,
+        ),
+      ],
+  ),
+  // new Rule(
+  //     'Remove brackets and quotes from YAML',
+  //     'Remove brackets and quotes from YAML',
+  //     RuleType.YAML,
+  //     (text: string) => {
+  //       return formatYAML(text, (text) => {
+  //         text = text.replace(/\["/gm, '');
+  //         text = text.replace(/"]/gm, '');
+  //         return text;
+  //       });
+  //     },
+  //     [
+  //       new Example(
+  //           'Removes brackets and quotes from YAML.',
+  //           dedent`
+  //           ---
+  //           date: ["2022-04-04"]
+  //           ---
+  //       `,
+  //           dedent`
+  //           ---
+  //           date: 2022-04-04
+  //           ---
+  //       `,
+  //       ),
+  //     ],
+  // ),
   new Rule(
       'Remove anatomie-review tag from YAML',
       'Remove anatomie-review tag from YAML',
@@ -1080,6 +1177,39 @@ export const rules: Rule[] = [
       ],
       [
         new TextOption('Title Key', 'Which YAML key to use for title', 'title'),
+      ],
+  ),
+  new Rule(
+      'Remove YAML that calendar doesnt like',
+      'Remove YAML that calendar doesnt like',
+      RuleType.YAML,
+      (text: string) => {
+        return formatYAML(text, (text) => {
+          text = text.replace(/type:.*\n/gm, '');
+          text = text.replace(/location:.*\n/gm, '');
+          text = text.replace(/professor:.*\n/gm, '');
+          text = text.replace(/topic:.*\n/gm, '');
+          return text;
+        });
+      },
+      [
+        new Example(
+            'Removes brackets and quotes from YAML.',
+            dedent`
+            ---
+            date: 2022-04-04
+            type: Vorlesung
+            location: Anatomie|Hösaal I (Anatomie)
+            professor: null
+            topic: null
+            ---
+        `,
+            dedent`
+            ---
+            date: 2022-04-04
+            ---
+        `,
+        ),
       ],
   ),
 

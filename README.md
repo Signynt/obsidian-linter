@@ -34,6 +34,7 @@ Documentation for all rules can be found in the [rules docs](https://github.com/
 
 ### YAML rules
 
+- [move-yaml-that-calendar-doesnt-like-to-content](https://github.com/platers/obsidian-linter/blob/master/docs/rules.md#move-yaml-that-calendar-doesnt-like-to-content)
 - [remove-anatomie-review-tag-from-yaml](https://github.com/platers/obsidian-linter/blob/master/docs/rules.md#remove-anatomie-review-tag-from-yaml)
 - [remove-in-progress/anatomie-tag-from-yaml](https://github.com/platers/obsidian-linter/blob/master/docs/rules.md#remove-in-progress/anatomie-tag-from-yaml)
 - [move-tags-to-yaml](https://github.com/platers/obsidian-linter/blob/master/docs/rules.md#move-tags-to-yaml)
@@ -41,6 +42,7 @@ Documentation for all rules can be found in the [rules docs](https://github.com/
 - [insert-yaml-attributes](https://github.com/platers/obsidian-linter/blob/master/docs/rules.md#insert-yaml-attributes)
 - [yaml-timestamp](https://github.com/platers/obsidian-linter/blob/master/docs/rules.md#yaml-timestamp)
 - [yaml-title](https://github.com/platers/obsidian-linter/blob/master/docs/rules.md#yaml-title)
+- [remove-yaml-that-calendar-doesnt-like](https://github.com/platers/obsidian-linter/blob/master/docs/rules.md#remove-yaml-that-calendar-doesnt-like)
 
 ### Heading rules
 
