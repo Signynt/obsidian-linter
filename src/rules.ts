@@ -681,7 +681,8 @@ export const rules: Rule[] = [
         return formatYAML(text, (text) => {
           text = text.replace(/\["/gm, '');
           text = text.replace(/"]/gm, '');
-          text = text.replace(/(type):\s(.*)\n(location):\s(.*)\n(professor):\s(.*)\n(topic):\s(.*)\n---[\s\S]*/gm, '---\n> [!info]\n> - **$1**:: $2\n> - **$3**:: [[$4]]\n> - **$5**:: [[$6]]\n> - **$7**:: $8\n');
+
+          text = text.replace(/(type):\s(.*)\n(location):\s(.*)\n(professor):\s(.*)\n(topic):\s(.*)\n---[\s\S]*/gm, '---\n> [!info]\n> - **$1**:: $2\n> - **$3**:: [[$4]]\n> - **$5**:: [[$6]]\n> - **$7**:: [[$8]]\n');
           text = text.replace(/\[\[null\]\]/gm, '');
           return text;
         });
