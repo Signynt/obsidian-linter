@@ -681,9 +681,9 @@ export const rules: Rule[] = [
         return formatYAML(text, (text) => {
           text = text.replace(/\["/gm, '');
           text = text.replace(/"]/gm, '');
-
-          text = text.replace(/(type):\s(.*)\n(location):\s(.*)\n(professor):\s(.*)\n(topic):\s(.*)\n---[\s\S]*/gm, '---\n> [!info]\n> - **$1**:: $2\n> - **$3**:: [[$4]]\n> - **$5**:: [[$6]]\n> - **$7**:: [[$8]]\n');
+          text = text.replace(/(type):\s(.*)\n(location):\s(.*)\n(professor):\s(.*)\n(topic):\s(.*)\n---[\s\S]*/gm, '---\n> [!info]\n> - **$1**:: $2\n> - **$3**:: [[$4]]\n> - **$5**:: [[$6]]\n> - **$7**:: $8\n');
           text = text.replace(/\[\[null\]\]/gm, '');
+          text = text.replace(/null/gm, '');
           return text;
         });
       },
@@ -695,8 +695,8 @@ export const rules: Rule[] = [
             date: ["2022-04-04"]
             type: Vorlesung
             location: Anatomie|Hösaal I (Anatomie)
-            professor: null
-            topic: null
+            professor: Name
+            topic: Testing
             ---
             textbooks
             test
@@ -708,8 +708,8 @@ export const rules: Rule[] = [
             > [!info]
             > - **type**:: Vorlesung
             > - **location**:: [[Anatomie|Hösaal I (Anatomie)]]
-            > - **professor**::
-            > - **topic**::
+            > - **professor**:: [[Name]]
+            > - **topic**:: Testing
 
             textbooks
             test

@@ -22,8 +22,8 @@ Before:
 date: ["2022-04-04"]
 type: Vorlesung
 location: Anatomie|Hösaal I (Anatomie)
-professor: null
-topic: null
+professor: Name
+topic: Testing
 ---
 textbooks
 test
@@ -38,8 +38,8 @@ date: 2022-04-04
 > [!info]
 > - **type**:: Vorlesung
 > - **location**:: [[Anatomie|Hösaal I (Anatomie)]]
-> - **professor**::
-> - **topic**::
+> - **professor**:: [[Name]]
+> - **topic**:: Testing
 
 textbooks
 test
